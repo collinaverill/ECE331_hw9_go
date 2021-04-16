@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Hello ECE331</title>
+
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js" integrity="sha256-9CKDuBNIQo/dQgrK9nyK+XcD2MBjb0JgnPMANrQw6Cs=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<h1>Hello World</h1>
+		<div style="width: 800px; height: 600px">
+			<canvas id="myChart"></canvas>
+		</div>
+		<script>
+			$(document).ready(function (){
+			    $.getJSON('/data', function (data) {
+			        console.log(data)
+					let ctx = $('#myChart');
+
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+							datasets: [{
+								label: 'Dataset',
+								data: data,
+							}],
+						},
+                        options: {
+                            scales: {
+                                xAxis: {
+                                    type: 'linear',
+                                }
+                            }
+                        }
+                    });
+				})
+			})
+
+		</script>
+	</body>
+</html>
